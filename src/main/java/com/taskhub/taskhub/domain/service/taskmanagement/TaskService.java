@@ -7,8 +7,8 @@ import com.taskhub.taskhub.domain.enums.Status;
 import java.util.List;
 
 public interface TaskService {
-    TaskRequestDTO create(TaskResponseDTO dto);
-    TaskRequestDTO update(Long id, TaskResponseDTO dto);
+    TaskResponseDTO create(TaskRequestDTO dto);
+    TaskResponseDTO update(Long id, TaskRequestDTO dto);
     TaskResponseDTO getById(Long id);
     List<TaskResponseDTO> getAll();
 

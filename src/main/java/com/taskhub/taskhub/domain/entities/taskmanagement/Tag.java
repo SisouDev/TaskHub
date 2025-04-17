@@ -3,6 +3,9 @@ package com.taskhub.taskhub.domain.entities.taskmanagement;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
@@ -16,4 +19,8 @@ public class Tag {
 
     @Column(nullable = false)
     private String name;
+
+    @ManyToMany(mappedBy = "tags")  // Mapeamento inverso
+    @ToString.Exclude
+    private Set<Task> tasks = new HashSet<>();
 }

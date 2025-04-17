@@ -8,10 +8,11 @@ import com.taskhub.taskhub.domain.dto.response.taskmanagement.TaskResponseDTO;
 import com.taskhub.taskhub.domain.entities.core.User;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface UserService {
     UserResponseDTO createUser(UserRequestDTO userRequestDTO);
-    UserResponseDTO updateUser(Long id);
+    UserResponseDTO updateUser(Long id, UserRequestDTO userRequestDTO);
 
     void deleteUserById(Long id);
     void changeUserRole(Long userId, Long roleId);
