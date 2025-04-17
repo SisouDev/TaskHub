@@ -1,4 +1,4 @@
-package com.taskhub.taskhub.config;
+package com.taskhub.taskhub.infrastructure.config;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
