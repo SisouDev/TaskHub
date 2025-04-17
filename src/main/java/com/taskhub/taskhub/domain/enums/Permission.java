@@ -6,5 +6,5 @@ import lombok.Getter;
 public enum Permission {
     ADMIN,
     MANAGER,
-    USER
+    USER,
 }
