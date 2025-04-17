@@ -1,4 +1,6 @@
 package com.taskhub.taskhub.domain.dto.enums;
 
-public record PermissionDTO(String permission) {
+import com.taskhub.taskhub.domain.enums.Permission;
+
+public record PermissionDTO(Permission permission) {
 }

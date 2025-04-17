@@ -1,8 +1,6 @@
-package com.taskhub.taskhub.domain.dto.organizational;
+package com.taskhub.taskhub.domain.dto.request.organizational;
 
-
-public record DepartmentDTO(
-        Long id,
+public record DepartmentRequestDTO(
         String name,
         String description,
         String iconUrl,
