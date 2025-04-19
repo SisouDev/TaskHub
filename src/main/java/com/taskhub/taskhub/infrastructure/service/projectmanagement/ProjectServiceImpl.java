@@ -137,7 +137,7 @@ public class ProjectServiceImpl implements ProjectService {
             logger.info("User with ID: {} successfully assigned to project with ID: {}", userId, projectId);
         } catch (Exception e) {
             logger.error("Unexpected error occurred while assigning user to project", e);
-            throw new RuntimeException("Unexpected error occurred while assigning user to project", e);
+            throw new UserNotFoundException("Unexpected error occurred while assigning user to project", e);
         }
     }
 
@@ -179,7 +179,7 @@ public class ProjectServiceImpl implements ProjectService {
             logger.info("Project leader successfully changed. Project ID: {}, New Leader User ID: {}", projectId, userId);
         } catch (Exception e) {
             logger.error("Unexpected error occurred while changing project leader", e);
-            throw new RuntimeException("Unexpected error occurred while changing project leader", e);
+            throw new UserNotFoundException("Unexpected error occurred while changing project leader", e);
         }
     }
 

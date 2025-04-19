@@ -7,6 +7,7 @@ import com.taskhub.taskhub.domain.repository.core.ActivityLogRepository;
 import com.taskhub.taskhub.infrastructure.converter.core.ActivityLogConverter;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -14,7 +15,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
@@ -82,6 +83,30 @@ class ActivityLogServiceImplTest {
 
         assertEquals(1, result.size());
         assertEquals(dto, result.getFirst());
+    }
+
+    @Test
+    void testLog_shouldSetCorrectFields() {
+        ArgumentCaptor<ActivityLog> captor = ArgumentCaptor.forClass(ActivityLog.class);
+        User user = new User(); user.setId(1L);
+
+        service.log("UPDATE", "Project", 5L, user);
+        verify(repository).save(captor.capture());
+
+        ActivityLog log = captor.getValue();
+        assertEquals("UPDATE", log.getActivity());
+        assertEquals("Project", log.getEntity());
+        assertEquals(5L, log.getEntityId());
+        assertEquals(user, log.getUser());
+        assertNotNull(log.getDate());
+    }
+
+    @Test
+    void testGetLogsByUser_shouldReturnEmptyListIfNoLogs() {
+        when(repository.findByUserId(2L)).thenReturn(List.of());
+
+        List<ActivityLogResponseDTO> result = service.getLogsByUser(2L);
+        assertTrue(result.isEmpty());
     }
 }
 
